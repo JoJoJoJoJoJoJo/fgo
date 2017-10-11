@@ -25,8 +25,14 @@ SECRET_KEY = '388#-xb120mx$kzhog+%(glhbjh%_5owahnpoeb(4u)q*2(imy'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ADMINS = (('whr','whr428@163.com'),)
 
+# Admin
+ALLOWED_HOSTS = (
+    'localhost',
+    '106.15.89.132',
+    '*',
+)
 
 # Application definition
 
