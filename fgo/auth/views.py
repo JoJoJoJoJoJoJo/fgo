@@ -11,6 +11,7 @@ def token_handler(request):
     try:
         data = request.GET
         print(data)
+        print(len(data))
         if len(data) == 0:
             return HttpResponse('Error:No args received')
         # 发过来的请求带有4个参数
@@ -26,11 +27,13 @@ def token_handler(request):
         map(sha1.update,l)
         hashcode = sha1.hexdigest()
         if hashcode == signature:
-            return HttpResponse(echostr)
             print('success')
+            return HttpResponse(echostr)
+
         else:
-            return HttpResponse(u'校验失败')
             print('fail')
+            return HttpResponse(u'校验失败')
+
     except Exception as e:
         print('error')
         return HttpResponse('Internal Error,{}'.format(e))
