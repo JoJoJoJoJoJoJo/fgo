@@ -2,8 +2,10 @@ from django.shortcuts import render
 from django.conf import settings
 import hashlib
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
+@csrf_exempt
 def token_handler(request):
     token = settings.TOKEN
     try:
@@ -13,7 +15,7 @@ def token_handler(request):
             return HttpResponse('Error:No args received')
         # 发过来的请求带有4个参数
         signature = data['signature']
-        timestamp  = data['timestamp']
+        timestamp = data['timestamp']
         nonce = data['nonce']
         echostr = data['echostr']
         # 根据文档要求进行校验
